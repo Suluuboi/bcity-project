@@ -1,27 +1,18 @@
 <?php
-/**
- * User: TheCodeholic
- * Date: 7/8/2020
- * Time: 8:43 AM
- */
 
 namespace app\controllers;
 
-
-use thecodeholic\phpmvc\Application;
-use thecodeholic\phpmvc\Controller;
-use thecodeholic\phpmvc\middlewares\AuthMiddleware;
-use thecodeholic\phpmvc\Request;
-use thecodeholic\phpmvc\Response;
+use app\models\Client;
+use suluuboi\phpmvc\Application;
+use suluuboi\phpmvc\Controller;
+use suluuboi\phpmvc\middlewares\AuthMiddleware;
+use suluuboi\phpmvc\Request;
+use suluuboi\phpmvc\Response;
 use app\models\LoginForm;
 use app\models\User;
+use app\models\ClientForm;
+use suluuboi\phpmvc\Router;
 
-/**
- * Class SiteController
- *
- * @author  Zura Sekhniashvili <zurasekhniashvili@gmail.com>
- * @package app\controllers
- */
 class SiteController extends Controller
 {
     public function __construct()
@@ -31,8 +22,32 @@ class SiteController extends Controller
 
     public function home()
     {
-        return $this->render('home', [
-            'name' => 'TheCodeholic'
+        return $this->render('homee', [
+            'name' => 'Binary City'
+        ]);
+    }
+
+    public function addClient(Request $request)
+    {
+        
+        $clientModel= new ClientForm();
+        
+        if ($request->getMethod() === 'post') {
+            $clientModel->loadData($request->getBody());
+            if ($clientModel->validate() && $clientModel->save()) {
+                Application::$app->response->redirect('/');
+            }
+            
+        }
+
+        if(Router::hasUrl('contacts')){
+            $clients = new Client();
+            $clientModel = $clients->getAll();
+        }
+
+        
+        return $this->render('add-client', [
+            'model' => $clientModel
         ]);
     }
 
@@ -95,4 +110,6 @@ class SiteController extends Controller
         var_dump($request->getBody());
         echo '</pre>';
     }
+
+    
 }

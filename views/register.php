@@ -1,7 +1,6 @@
 <?php
-/** @var $model \thecodeholic\phpmvc\Model */
 
-use thecodeholic\phpmvc\form\Form;
+use suluuboi\phpmvc\form\Form;
 
 $form = new Form();
 ?>
@@ -20,5 +19,8 @@ $form = new Form();
     <?php echo $form->field($model, 'email') ?>
     <?php echo $form->field($model, 'password')->passwordField() ?>
     <?php echo $form->field($model, 'passwordConfirm')->passwordField() ?>
-    <button class="btn btn-success">Submit</button>
+    <div class="row">
+        <div class="col"><button class="btn btn-success">Submit</button></div class='col'>
+        <div ><a href="/">back home</a></div>
+    </div>
 <?php Form::end() ?>

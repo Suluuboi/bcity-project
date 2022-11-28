@@ -1,22 +1,9 @@
 <?php
-/**
- * User: TheCodeholic
- * Date: 7/8/2020
- * Time: 9:15 AM
- */
 
 namespace app\models;
 
+use suluuboi\phpmvc\UserModel;
 
-use thecodeholic\phpmvc\DbModel;
-use thecodeholic\phpmvc\UserModel;
-
-/**
- * Class Register
- *
- * @author  Zura Sekhniashvili <zurasekhniashvili@gmail.com>
- * @package app\models
- */
 class User extends UserModel
 {
     public int $id = 0;

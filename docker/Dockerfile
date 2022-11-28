@@ -32,9 +32,11 @@ COPY ./php.ini /usr/local/etc/php/
 RUN apt-get purge -y g++ \
     && apt-get autoremove -y \
     && rm -r /var/lib/apt/lists/* \
-    && rm -rf /tmp/* \
-    && sh ./install-composer.sh \
-    && rm ./install-composer.sh
+    && rm -rf /tmp/* 
+    #&& sh ./install-composer.sh \
+    #&& rm ./install-composer.sh
+
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Change the current working directory
 WORKDIR /var/www

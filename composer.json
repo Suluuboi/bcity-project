@@ -1,18 +1,18 @@
 {
-    "name": "thecodeholic/phpmvc-framework",
+    "name": "suluboi/phpmvc-framework",
     "authors": [
         {
-            "name": "Zura Sekhniashvili",
-            "email": "zurasekhniashvili@gmail.com"
+            "name": "Hans Mbangu",
+            "email": "hansmbangu@gmail.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "app\\": "."
+            "app\\": ".",
+            "suluuboi\\phpmvc\\": "base-classes/"
         }
     },
     "require": {
-        "vlucas/phpdotenv": "^5.0",
-        "thecodeholic/php-mvc-core": "^v1.0.5"
+        "vlucas/phpdotenv": "^5.0"
     }
 }

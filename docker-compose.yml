@@ -3,7 +3,7 @@ version: "3.7"
 services:
   app:
     build: ./docker
-    image: thecodeholic/php_mvc
+    image: suluuboi/php_mvc
     ports:
       - "8080:80"
     volumes:
