@@ -29,6 +29,8 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/add-client', [SiteController::class, 'addClient']);
 $app->router->post('/add-client', [SiteController::class, 'addClient']);
 
+$app->router->get('/clients', [SiteController::class, 'getClients']);
+
 $app->router->post('/clients', [DataController::class, 'get']);
 
 $app->router->get('/register', [SiteController::class, 'register']);

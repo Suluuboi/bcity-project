@@ -41,11 +41,15 @@ $form = new Form();
   $(document).ready(function(){
 
     $("#getClients").click(function(){
-      $.post("clients",
-          {},
-          function(data, status){
-            console.log(data)
-          });
+      const item = 'somthing';
+      console.log("Pressed");
+      $.ajax({
+        url: '/clients',
+        type: 'GET',
+        success: function (response) {
+          console.log(response)
+        }
+      })
     })
     
     $("#name").keyup(function(e){

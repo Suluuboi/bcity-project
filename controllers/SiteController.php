@@ -27,6 +27,17 @@ class SiteController extends Controller
         ]);
     }
 
+    public function getClients(){
+        $clients = new ClientForm();
+        $a =  $clients->getAll();
+
+        echo '<pre>';
+        var_dump($a);
+        echo '</pre>';
+
+        return $a;
+    }
+
     public function addClient(Request $request)
     {
         
@@ -41,7 +52,7 @@ class SiteController extends Controller
         }
 
         if(Router::hasUrl('contacts')){
-            $clients = new Client();
+            $clients = new ClientForm();
             $clientModel = $clients->getAll();
         }
 

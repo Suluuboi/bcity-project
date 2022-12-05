@@ -16,7 +16,7 @@ class Controller
         $this->layout = $layout;
     }
 
-    public function render($view, $params = []): string
+    public function render($view, $params = []): mixed//string
     {
         return Application::$app->router->renderView($view, $params);
     }
