@@ -21,6 +21,11 @@ class Router
         $this->routeMap['get'][$url] = $callback;
     }
 
+    public function getAPI(string $url, $callback)
+    {
+        $this->routeMap['get'][$url] = $callback;
+    }
+
     public function post(string $url, $callback)
     {
         $this->routeMap['post'][$url] = $callback;
@@ -97,7 +102,6 @@ class Router
             return $this->renderView($callback);
         }
         if (is_array($callback)) {
-            
             $controller = new $callback[0];
             $controller->action = $callback[1];
             Application::$app->controller = $controller;

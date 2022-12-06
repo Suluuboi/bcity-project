@@ -30,12 +30,7 @@ class SiteController extends Controller
     public function getClients(){
         $clients = new ClientForm();
         $a =  $clients->getAll();
-
-        echo '<pre>';
-        var_dump($a);
-        echo '</pre>';
-
-        return $a;
+        echo json_encode($a);
     }
 
     public function addClient(Request $request)

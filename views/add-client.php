@@ -30,6 +30,11 @@ $form = new Form();
             <?php Form::end() ?>
             </p>
         </div>
+
+        <div id="data">
+          No Data Here
+        </div>
+
         <div class="tab-pane" id="contacts">
             <button id="getClients">Fetch</button>
         </div>
@@ -42,12 +47,22 @@ $form = new Form();
 
     $("#getClients").click(function(){
       const item = 'somthing';
-      console.log("Pressed");
       $.ajax({
         url: '/clients',
         type: 'GET',
         success: function (response) {
-          console.log(response)
+          var data = JSON.parse(response)[0]
+          console.log(data)
+          for(client in data){
+
+            $("#data").append(`
+              <p>
+                <div>${data['name']}</div>
+              </p>
+            `)
+
+          }
+          
         }
       })
     })

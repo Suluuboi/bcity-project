@@ -1,11 +1,11 @@
 <?php
 /**
- * User: TheCodeholic
+ * User: suluuboi
  * Date: 7/10/2020
  * Time: 8:21 AM
  */
 
-use thecodeholic\phpmvc\Application;
+use suluuboi\phpmvc\Application;
 
 require_once __DIR__.'/vendor/autoload.php';
 $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
