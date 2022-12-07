@@ -46,13 +46,8 @@ class SiteController extends Controller
             
         }
 
-        if(Router::hasUrl('contacts')){
-            $clients = new ClientForm();
-            $clientModel = $clients->getAll();
-        }
-
         
-        return $this->render('add-client', [
+        return $this->render('clients-info', [
             'model' => $clientModel
         ]);
     }

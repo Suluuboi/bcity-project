@@ -21,6 +21,10 @@ class Controller
         return Application::$app->router->renderView($view, $params);
     }
 
+    public function renderTemplate($view, $params = []){
+        return Application::$app->router->renderViewOnly($view, $params);
+    }
+
     public function registerMiddleware(BaseMiddleware $middleware)
     {
         $this->middlewares[] = $middleware;

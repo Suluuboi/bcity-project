@@ -2,6 +2,7 @@
 
 
 use app\controllers\AboutController;
+use app\controllers\ClientController;
 use app\controllers\DataController;
 use app\controllers\SiteController;
 use app\models\ClientForm;
@@ -29,9 +30,9 @@ $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/add-client', [SiteController::class, 'addClient']);
 $app->router->post('/add-client', [SiteController::class, 'addClient']);
 
-$app->router->get('/clients', [SiteController::class, 'getClients']);
+$app->router->get('/clients/info', [ClientController::class, 'loadPage']);
 
-$app->router->post('/clients', [DataController::class, 'get']);
+$app->router->get('/clients', [ClientController::class, 'getClients']);
 
 $app->router->get('/register', [SiteController::class, 'register']);
 $app->router->post('/register', [SiteController::class, 'register']);

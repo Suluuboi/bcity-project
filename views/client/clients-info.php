@@ -9,14 +9,14 @@ $form = new Form();
 
 ?>
 
-<h1>Add Client</h1>
+<h1>Client Information</h1>
 
 <div class="container">
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a href="#general" data-toggle="tab" class="nav-link active">General</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" id="contactsBtn">
             <a href="#contacts" data-toggle="tab" class="nav-link">Contacts</a>
         </li>
     </ul>
@@ -31,12 +31,16 @@ $form = new Form();
             </p>
         </div>
 
-        <div id="data">
-          No Data Here
-        </div>
-
         <div class="tab-pane" id="contacts">
-            <button id="getClients">Fetch</button>
+
+          <div class="spinner-border" role="status" id="loaderDiv">
+            <span class="sr-only">Loading...</span>
+          </div>
+
+          <div id="data">
+            
+          </div>
+          
         </div>
     </div>
 </div>
@@ -45,26 +49,31 @@ $form = new Form();
 <script>
   $(document).ready(function(){
 
-    $("#getClients").click(function(){
-      const item = 'somthing';
-      $.ajax({
-        url: '/clients',
-        type: 'GET',
-        success: function (response) {
-          var data = JSON.parse(response)[0]
-          console.log(data)
-          for(client in data){
+    var loaded = [];
 
-            $("#data").append(`
-              <p>
-                <div>${data['name']}</div>
-              </p>
-            `)
+    $("#contactsBtn").click(function(){
+
+      if(loaded.length == 0){
+
+
+        $.ajax({
+          url: '/clients',
+          type: 'GET',
+          beforeSend: function() {
+            $("#loaderDiv").show();
+          },
+          success: function (response) {
+            
+            $("#loaderDiv").hide();
+
+            $("#data").append(response);
 
           }
-          
-        }
-      })
+        })
+
+      }
+
+      
     })
     
     $("#name").keyup(function(e){

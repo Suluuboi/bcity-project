@@ -31,7 +31,7 @@ class ClientForm extends DBModel
     {
         return [
             'name' => [self::RULE_REQUIRED],
-            'code' => []
+            'code' => [self::RULE_REQUIRED]
         ];
     }
 

@@ -35,7 +35,7 @@
                 <a class="nav-link" href="/contact">Contact</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/add-client">Add Client</a>
+                <a class="nav-link" href="/clients/info">Client Info</a>
             </li>
         </ul>
         <?php use suluuboi\phpmvc\Application;
