@@ -1,49 +1,50 @@
-<?php
-  use suluuboi\phpmvc\Controller;
-  $controller = new Controller();
-  $obj=[
-    'name'=>'Hans',
-    'code'=>'200FVN'
-  ];
-  //echo '<pre>';
-  //var_dump($obj);
-  //echo '</pre>';
-?>
-</br>
-<?php
-  //echo '<pre>';
-  //var_dump($model);
-  //echo '</pre>';
-?>
-
+<?php if($model) : ?>
 <div class="row">
   <div class="col-4">
     <div class="list-group" id="list-tab" role="tablist">
-      <?php 
-        foreach($model as $key => $client ){
-          //echo "{$key} ==> {$client['name']}";
-          echo $client['name'];
-          $a = $controller->renderTemplate('client/client-list-item-template',[ 'model' => $obj ]);
-          echo $a;
-          echo '</br>';
-          //var_dump($client);
-        } 
+      <?php foreach($model as $key => $client ){  
+        $id = $client["id"]  ?? null
       ?>
-      <?php echo $controller->renderTemplate('client/client-list-item-template',[ 'model' => $obj ]) ?>
-      <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-profile" role="tab" aria-controls="profile">Profile</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Messages</a>
-      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Settings</a>
+        <a  
+          class="list-group-item list-group-item-action <?php if($key==0) echo 'active'?>"
+          class="hans"  
+          id=<?php echo "list-{$id}-list" ?? null ?> 
+          data-toggle="list" 
+          href=<?php echo "#list-{$id}" ?> 
+          role="tab" 
+          aria-controls=<?php echo $id ?? null ?>
+        >
+          <ul class="list-unstyled">
+            <li>Name: <?php  echo $client['name'] ?? null ?></li>
+            <li>Code: <?php  echo $client['code'] ?? null ?></li>
+            <li class='text-center'>Number <?php  echo $client['count'] ?? null ?> </li>
+          </ul>
+        </a>    
+      <?php }?>
     </div>
   </div>
   <div class="col-8">
     <div class="tab-content" id="nav-tabContent">
-      <!--<div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
-        Home Data
-      </div>-->
-      <?php echo $controller->renderTemplate('client/client-list-item-content-template',[ 'model' => [] ]) ?>
-      <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">Profile Data</div>
-      <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">Message Data</div>
-      <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Settings Data</div>
+      <?php foreach($model as $key => $clientContent ){  
+        $id = $clientContent["id"]  ?? null
+      ?>
+        <div 
+          class="tab-pane fade show <?php if($key==0) echo 'active'?>" 
+          id="list-<?php  echo $id ?? null ?>" role="tabpanel" 
+          aria-labelledby="list-<?php  echo $id ?? null ?>-list"
+        >
+          <h4><?php  echo $clientContent['name'] ?> Contacts</h4>
+          <button>add new contacts</button>
+        </div>
+      <?php } ?>
     </div>
   </div>
 </div>
+
+<?php else : ?>
+
+<div class="row">
+  <p>No Clients Found.</p>
+</div>
+
+<?php endif ?>

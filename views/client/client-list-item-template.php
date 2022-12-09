@@ -1,9 +1,7 @@
 <?php
-  $name = $model['name'];
-  //id="list-home-list"
-  //var_dump($name);
+  $name = $model['id'];
 ?>
-
+<li class="list-group-item">%CUSTOMER%<span class="label label-primary pull-right">SALES</span></li>
     <a  class="list-group-item list-group-item-action"  
         id=<?php echo "list-{$name}-list" ?? null ?> 
         data-toggle="list" 
@@ -17,4 +15,3 @@
           <li class='text-center'>Number <?php  echo $model['count'] ?? null ?> </li>
         </ul>
     </a>
-

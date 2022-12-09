@@ -28,10 +28,9 @@ $app->on(Application::EVENT_BEFORE_REQUEST, function(){
 
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/add-client', [SiteController::class, 'addClient']);
-$app->router->post('/add-client', [SiteController::class, 'addClient']);
+$app->router->post('/clients/info', [SiteController::class, 'addClient']);
 
 $app->router->get('/clients/info', [ClientController::class, 'loadPage']);
-
 $app->router->get('/clients', [ClientController::class, 'getClients']);
 
 $app->router->get('/register', [SiteController::class, 'register']);
