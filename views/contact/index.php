@@ -1,23 +1,20 @@
 <?php
 
 use suluuboi\phpmvc\form\Form;
-use suluuboi\phpmvc\Router;
 
 $form = new Form();
 
-
-
 ?>
 
-<h1>Client Information</h1>
+<h1>Contact Information</h1>
 
 <div class="container">
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a href="#general" data-toggle="tab" class="nav-link active">General</a>
         </li>
-        <li class="nav-item" id="contactsBtn">
-            <a href="#contacts" data-toggle="tab" class="nav-link">Contacts</a>
+        <li class="nav-item" id="clientsBtn">
+            <a href="#clients" data-toggle="tab" class="nav-link">Clients</a>
         </li>
     </ul>
     <div class="tab-content py-3">
@@ -25,7 +22,8 @@ $form = new Form();
             <p>
             <?php $form = Form::begin('', 'post') ?>
                 <?php echo $form->field($model, 'name') ?>
-                <?php echo $form->field($model, 'code')  ?>
+                <?php echo $form->field($model, 'surname')  ?>
+                <?php echo $form->field($model, 'email')  ?>
                 <button class="btn btn-success">Submit</button>
             <?php Form::end() ?>
             </p>
@@ -48,16 +46,18 @@ $form = new Form();
 
 <script>
   $(document).ready(function(){
+    
 
-    var loaded = [];
+    $("#clientsBtn").click(function(){
 
-    $("#contactsBtn").click(function(){
 
-      if(loaded.length == 0){
+      $(".alert").remove()
 
+      var id =  $('#clientList a:last-child').data("id")
+      if(!id){
 
         $.ajax({
-          url: '/clients',
+          url: '/contacts',
           type: 'GET',
           beforeSend: function() {
             $("#loaderDiv").show();
@@ -72,6 +72,8 @@ $form = new Form();
         })
 
       }
+
+      
 
       
     })
@@ -89,15 +91,40 @@ $form = new Form();
     })
 
 
+    function loadContacts(){
+
+      $.ajax({
+          url: '/contacts',
+          type: 'GET',
+          beforeSend: function() {
+            $("#loadContactsDiv").show();
+          },
+          success: function (response) {
+            
+            $("#loadContactsDiv").hide();
+
+            $("#data").append(response);
+
+          //addContactsButtonHandeler();
+
+        }
+      })
+
+    }
+
 
     function getName(){
       var name = $("#name").val()
-      /*$.ajax({
+      /*
+
+      $.ajax({
         url: 'http://www.yourwebsite.com/file_name.php',
         type: 'POST',
         data: {action: 'delItem',item: item},
         success: function (response) {}
-      })*/
+      })
+      
+      */
       $("#code").val(nameToCode(name)+pad(10,3));
 
 

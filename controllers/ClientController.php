@@ -6,6 +6,7 @@ use app\models\ClientForm;
 use suluuboi\phpmvc\Application;
 use suluuboi\phpmvc\Controller;
 use suluuboi\phpmvc\Request;
+use suluuboi\phpmvc\View;
 
 class ClientController extends Controller
 {
@@ -17,12 +18,14 @@ class ClientController extends Controller
         if ($request->getMethod() === 'post') {
             $clientModel->loadData($request->getBody());
             if ($clientModel->validate() && $clientModel->save()) {
-                Application::$app->response->redirect('/');
+                Application::$app->session->setFlash('success', "{$clientModel['name']} Added Successful");
+                Application::$app->response->redirect('/clients/info');
+                return;
             }
             
         }
         
-        return $this->render('client/clients-info', [
+        return $this->render('client/index', [
             'model' => $clientModel
         ]);
     }
@@ -31,7 +34,7 @@ class ClientController extends Controller
         $clients = new ClientForm();
         $a =  $clients->getAll();
         //echo json_encode($a);
-        return $this->renderTemplate('client/client-list-template',[
+        return $this->renderTemplate('client/templates/client-list',[
             'model' => $a
         ]);
     }

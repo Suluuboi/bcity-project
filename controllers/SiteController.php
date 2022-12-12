@@ -61,7 +61,7 @@ class SiteController extends Controller
         if ($request->getMethod() === 'post') {
             $loginForm->loadData($request->getBody());
             if ($loginForm->validate() && $loginForm->login()) {
-                Application::$app->response->redirect('/');
+                Application::$app->response->redirect('clients-info');
                 return;
             }
         }

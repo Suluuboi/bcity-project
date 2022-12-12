@@ -3,6 +3,7 @@
 
 use app\controllers\AboutController;
 use app\controllers\ClientController;
+use app\controllers\ContactController;
 use app\controllers\DataController;
 use app\controllers\SiteController;
 use app\models\ClientForm;
@@ -28,10 +29,15 @@ $app->on(Application::EVENT_BEFORE_REQUEST, function(){
 
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/add-client', [SiteController::class, 'addClient']);
-$app->router->post('/clients/info', [SiteController::class, 'addClient']);
 
 $app->router->get('/clients/info', [ClientController::class, 'loadPage']);
+$app->router->post('/clients/info', [ClientController::class, 'loadPage']);
+
 $app->router->get('/clients', [ClientController::class, 'getClients']);
+
+
+$app->router->get('/contacts/info', [ContactController::class, 'loadPage']);
+
 
 $app->router->get('/register', [SiteController::class, 'register']);
 $app->router->post('/register', [SiteController::class, 'register']);

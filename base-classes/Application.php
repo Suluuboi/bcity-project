@@ -72,12 +72,13 @@ class Application
         $this->triggerEvent(self::EVENT_BEFORE_REQUEST);
         try {
             $pageData =  $this->router->resolve();
-            $type = gettype($pageData);
-            if($type === "string"){
+            //$type = gettype($pageData);
+            echo $pageData;
+            /*if($type === "string"){
                 echo $pageData;
             }else{
                 return $pageData;
-            }
+            }*/
         } catch (\Exception $e) {
             echo $this->router->renderView('_error', [
                 'exception' => $e,
