@@ -47,6 +47,12 @@ abstract class DbModel extends Model
         return $statement->fetchObject(static::class);
     }
 
+    public static function customQuery($sql){
+        $statement = self::prepare($sql);
+        $statement->execute();
+        return $statement->fetchAll();
+    }
+
     public static function getAll()
     {
         $tableName = static::tableName();

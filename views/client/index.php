@@ -63,6 +63,7 @@ $form = new Form();
           type: 'GET',
           beforeSend: function() {
             $("#loaderDiv").show();
+            console.log("start loading")
           },
           success: function (response) {
             
@@ -70,6 +71,9 @@ $form = new Form();
 
             $("#data").append(response);
 
+          },
+          error: function(err){
+            console.log(err)
           }
         })
 

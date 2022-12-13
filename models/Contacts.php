@@ -4,7 +4,7 @@ namespace app\models;
 
 use suluuboi\phpmvc\db\DbModel;
 
-class Contact extends DBModel
+class Contacts extends DBModel
 {
     public string $name = '';
     public string $surname = '';

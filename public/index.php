@@ -34,9 +34,10 @@ $app->router->get('/clients/info', [ClientController::class, 'loadPage']);
 $app->router->post('/clients/info', [ClientController::class, 'loadPage']);
 
 $app->router->get('/clients', [ClientController::class, 'getClients']);
-
+$app->router->get('/contacts', [ContactController::class, 'getContacts']);
 
 $app->router->get('/contacts/info', [ContactController::class, 'loadPage']);
+$app->router->post('/contacts/info', [ContactController::class, 'loadPage']);
 
 
 $app->router->get('/register', [SiteController::class, 'register']);

@@ -29,7 +29,7 @@ $form = new Form();
             </p>
         </div>
 
-        <div class="tab-pane" id="contacts">
+        <div class="tab-pane" id="clients">
 
           <div class="spinner-border" role="status" id="loaderDiv">
             <span class="sr-only">Loading...</span>
@@ -50,21 +50,26 @@ $form = new Form();
 
     $("#clientsBtn").click(function(){
 
-
+      
       $(".alert").remove()
 
       var id =  $('#clientList a:last-child').data("id")
+      
       if(!id){
+
+        console.log(id)
 
         $.ajax({
           url: '/contacts',
           type: 'GET',
           beforeSend: function() {
             $("#loaderDiv").show();
+            console.log("start loading")
           },
           success: function (response) {
             
             $("#loaderDiv").hide();
+            console.log(response)
 
             $("#data").append(response);
 
@@ -74,122 +79,7 @@ $form = new Form();
       }
 
       
-
-      
     })
-    
-    $("#name").keyup(function(e){
-      
-      var length = $("#name").val().length
-
-      disableButton(length);
-
-      if(length > 0){
-        delayGetingName ();
-      }
-      
-    })
-
-
-    function loadContacts(){
-
-      $.ajax({
-          url: '/contacts',
-          type: 'GET',
-          beforeSend: function() {
-            $("#loadContactsDiv").show();
-          },
-          success: function (response) {
-            
-            $("#loadContactsDiv").hide();
-
-            $("#data").append(response);
-
-          //addContactsButtonHandeler();
-
-        }
-      })
-
-    }
-
-
-    function getName(){
-      var name = $("#name").val()
-      /*
-
-      $.ajax({
-        url: 'http://www.yourwebsite.com/file_name.php',
-        type: 'POST',
-        data: {action: 'delItem',item: item},
-        success: function (response) {}
-      })
-      
-      */
-      $("#code").val(nameToCode(name)+pad(10,3));
-
-
-    }
-
-    function debounce(func, timeout = 600){
-      let timer;
-      return (...args) => {
-        clearTimeout(timer);
-        timer = setTimeout(() => { func.apply(this, args); }, timeout);
-      };
-    }
-      
-    const delayGetingName = debounce(()=> getName())
-
-    function pad(num, size, padding = 'pre' ,paddingVale = '0') {
-      num = num.toString();
-      if(padding = 'pre') 
-        while (num.length < size) num = paddingVale + num 
-      else
-          while (num.length < size) num = num + paddingVale;
-
-      return num;
-    }
-
-    function disableButton(length){
-      if(length <= 0){
-        $(".btn").attr("disabled",true)
-      }else{
-        $(".btn").attr("disabled") ? $(".btn").removeAttr("disabled") : null;
-      }
-    }
-
-    function nameToCode(str){
-      const result = str.trim().split(/\s+/);
-
-      var code = '';
-      
-      for(let i = 0; result.length > i;  i++ ){
-        
-        (result.length > 1)?
-          code = code + result[i].charAt(0):
-          code += result[i]
-        
-        
-
-        console.log(i);
-
-        if(i >= 3){
-          break;
-        }
-
-        //if the last one
-        if((i+1) === result.length ){
-          code = code + pad(code,3,'post',"ABC")
-        }
-        
-
-      }
-
-      var last3 = code.slice(0,3)
-      var final = last3.toUpperCase();
-
-      return final
-    }
 
 
   });
